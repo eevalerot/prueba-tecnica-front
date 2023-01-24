@@ -1,0 +1,48 @@
+<div class="container fluid">
+
+    <h2>CONSULTA DE LIBROS POR CATEGORIA</h2>
+
+  <br /><br />
+
+  <form [formGroup]="categoriaFormulario">
+    <div class="col-md-3">
+
+      <select class="form-select" formControlName="categoria">
+        <option *ngFor="let parametrosVal of categories" [ngValue]="parametrosVal.cat_id">
+          {{ parametrosVal.catDescripcion }}
+        </option>
+      </select>
+
+      <br /><br />
+      <div class="col-md-3">
+        <button type="button" class="btn btn-primary" (click)="mostrarLibros()">BUSCAR</button>
+      </div>
+    </div>
+  </form>
+  <br /><br />
+  <div class="col-12 col-md-12">
+    <h4><span class="d-block p-2 bg-primary text-white">LISTADO DE LIBROS</span></h4>
+    <table class="table table-bordered border-primary table-responsive">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col-1">TÍTULO</th>
+          <th scope="col-1">AUTOR</th>
+          <th scope="col-1">ISBN</th>
+          <th scope="col-1">PRECIO</th>
+          <th scope="col-1">CATEGORÍA</th>
+          <th scope="col-1">DESCRIPCION LIBRO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ctg of librosCategorias">
+          <td>{{ ctg.bookTitle }}</td>
+          <td>{{ ctg.libAuthors.autName }} {{ ctg.libAuthors.autLastName }}</td>
+          <td>{{ ctg.bookIsbn }}</td>
+          <td>{{ ctg.book_price }}</td>
+          <td>{{ ctg.libCategories.catDescripcion }}</td>
+          <td>{{ ctg.bookDescription }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
